@@ -25,7 +25,7 @@ fn move_houses(current_house: &mut (i32, i32), direction: Direction) {
 }
 
 pub fn day_03() {
-    let input = include_str!("../resources/inputs/day_03.txt");
+    let input = include_str!("../resources/inputs/day_03.txt").trim();
     let input: Vec<char> = input.chars().collect();
 
     println!("Day 3, Part 1: {:?}", part_1(&input));

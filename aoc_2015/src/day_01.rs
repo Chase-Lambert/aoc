@@ -1,5 +1,5 @@
 pub fn day_01() {
-    let input = include_str!("../resources/inputs/day_01.txt");
+    let input = include_str!("../resources/inputs/day_01.txt").trim();
 
     println!("Day 1, Part 1: {:?}", part_1(&input));
     println!("Day 1, Part 2: {:?}", part_2(&input).unwrap());

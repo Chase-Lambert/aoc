@@ -51,7 +51,7 @@ impl Present {
 }
 
 pub fn day_02() {
-    let input = include_str!("../resources/inputs/day_02.txt");
+    let input = include_str!("../resources/inputs/day_02.txt").trim();
     let input: Vec<&str> = input.lines().collect();
 
     println!("Day 2, Part 1: {:?}", part_1(&input));
