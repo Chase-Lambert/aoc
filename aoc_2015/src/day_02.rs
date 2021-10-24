@@ -8,7 +8,6 @@ struct Present {
 impl Present {
     fn new(dimensions: &str) -> Self {
         let dimensions: Vec<u32> = dimensions.split("x").map(|s| s.parse().unwrap()).collect();
-
         let (length, width, height) = (dimensions[0], dimensions[1], dimensions[2]);
 
         Present {
@@ -25,8 +24,7 @@ impl Present {
     }
 
     fn area_of_smallest_side(&self) -> u32 {
-        let (length, width, height) = (self.length, self.width, self.height);
-        let mut side_lengths: Vec<u32> = vec![length, width, height];
+        let mut side_lengths: Vec<u32> = vec![self.length, self.width, self.height];
         side_lengths.sort();
 
         side_lengths[0] * side_lengths[1]
@@ -37,8 +35,7 @@ impl Present {
     }
 
     fn smallest_perimeter(&self) -> u32 {
-        let (length, width, height) = (self.length, self.width, self.height);
-        let mut side_lengths: Vec<u32> = vec![length, width, height];
+        let mut side_lengths: Vec<u32> = vec![self.length, self.width, self.height];
         side_lengths.sort();
 
         side_lengths[0] * 2 + side_lengths[1] * 2
@@ -58,25 +55,25 @@ pub fn day_02() {
     let input: Vec<&str> = input.lines().collect();
 
     println!("Day 2, Part 1: {:?}", part_1(&input));
-    println!("Day 2, Part 1: {:?}", part_2(&input));
+    println!("Day 2, Part 2: {:?}", part_2(&input));
 }
 
 fn part_1(presents: &[&str]) -> u32 {
-    let mut result = 0;
+    let mut wrapping_paper = 0;
     for p in presents {
         let present = Present::new(p);
-        result += present.paper_needed();
+        wrapping_paper += present.paper_needed();
     }
 
-    result
+    wrapping_paper
 }
 
 fn part_2(presents: &[&str]) -> u32 {
-    let mut result = 0;
+    let mut ribbon = 0;
     for p in presents {
         let present = Present::new(p);
-        result += present.ribbon_needed();
+        ribbon += present.ribbon_needed();
     }
 
-    result
+    ribbon
 }
