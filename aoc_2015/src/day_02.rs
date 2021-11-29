@@ -50,14 +50,6 @@ impl Present {
     }
 }
 
-pub fn day_02() {
-    let input = include_str!("../resources/inputs/day_02.txt").trim();
-    let input: Vec<&str> = input.lines().collect();
-
-    println!("Day 2, Part 1: {:?}", part_1(&input));
-    println!("Day 2, Part 2: {:?}", part_2(&input));
-}
-
 fn part_1(presents: &[&str]) -> u32 {
     let mut wrapping_paper = 0;
     for p in presents {
@@ -76,4 +68,12 @@ fn part_2(presents: &[&str]) -> u32 {
     }
 
     ribbon
+}
+
+pub fn day_02() {
+    let input = include_str!("../resources/inputs/day_02.txt").trim();
+    let input: Vec<&str> = input.lines().collect();
+
+    println!("Day 2, Part 1: {:?}", part_1(&input));
+    println!("Day 2, Part 2: {:?}", part_2(&input));
 }

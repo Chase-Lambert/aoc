@@ -24,14 +24,6 @@ fn move_houses(current_house: &mut (i32, i32), direction: Direction) {
     }
 }
 
-pub fn day_03() {
-    let input = include_str!("../resources/inputs/day_03.txt").trim();
-    let input: Vec<char> = input.chars().collect();
-
-    println!("Day 3, Part 1: {:?}", part_1(&input));
-    println!("Day 3, Part 2: {:?}", part_2(&input));
-}
-
 fn part_1(directions: &[char]) -> usize {
     let mut current_house = (0, 0);
     let mut houses_visited = HashSet::new();
@@ -54,17 +46,13 @@ fn part_1(directions: &[char]) -> usize {
 }
 
 fn part_2(directions: &[char]) -> usize {
-    let santa_directions = directions
-        .to_owned()
-        .into_iter()
-        .step_by(2)
-        .collect::<Vec<char>>();
-    let robot_directions = directions
+    let santa_directions: Vec<char> = directions.to_owned().into_iter().step_by(2).collect();
+    let robot_directions: Vec<char> = directions
         .to_owned()
         .into_iter()
         .skip(1)
         .step_by(2)
-        .collect::<Vec<char>>();
+        .collect();
 
     let mut current_house = (0, 0);
     let mut houses_visited = HashSet::new();
@@ -99,6 +87,14 @@ fn part_2(directions: &[char]) -> usize {
     }
 
     houses_visited.len()
+}
+
+pub fn day_03() {
+    let input = include_str!("../resources/inputs/day_03.txt").trim();
+    let input: Vec<char> = input.chars().collect();
+
+    println!("Day 3, Part 1: {:?}", part_1(&input));
+    println!("Day 3, Part 2: {:?}", part_2(&input));
 }
 
 mod tests {

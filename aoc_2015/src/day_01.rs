@@ -1,10 +1,3 @@
-pub fn day_01() {
-    let input = include_str!("../resources/inputs/day_01.txt").trim();
-
-    println!("Day 1, Part 1: {:?}", part_1(&input));
-    println!("Day 1, Part 2: {:?}", part_2(&input).unwrap());
-}
-
 fn part_1(directions: &str) -> i32 {
     let mut floor = 0;
 
@@ -43,4 +36,11 @@ fn part_2(directions: &str) -> Option<usize> {
     }
 
     None
+}
+
+pub fn day_01() {
+    let input = include_str!("../resources/inputs/day_01.txt").trim();
+
+    println!("Day 1, Part 1: {:?}", part_1(&input));
+    println!("Day 1, Part 2: {:?}", part_2(&input).unwrap());
 }
