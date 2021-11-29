@@ -7,7 +7,17 @@ enum Direction {
     West,
 }
 
-fn move_houses(current_house: &mut (i32, i32), direction: Direction) {
+fn move_to_direction(c: char) -> Direction {
+    match c {
+        '^' => Direction::North,
+        'v' => Direction::South,
+        '>' => Direction::East,
+        '<' => Direction::West,
+        _ => unreachable!(),
+    }
+}
+
+fn move_houses(current_house: &mut (i32, i32), direction: &Direction) {
     match direction {
         Direction::North => {
             current_house.0 += 1;
@@ -24,30 +34,22 @@ fn move_houses(current_house: &mut (i32, i32), direction: Direction) {
     }
 }
 
-fn part_1(directions: &[char]) -> usize {
+fn part_1(directions: &[Direction]) -> usize {
     let mut current_house = (0, 0);
     let mut houses_visited = HashSet::new();
     houses_visited.insert(current_house);
 
     for m in directions {
-        let direction = match m {
-            '^' => Direction::North,
-            'v' => Direction::South,
-            '>' => Direction::East,
-            '<' => Direction::West,
-            _ => unreachable!(),
-        };
-
-        move_houses(&mut current_house, direction);
+        move_houses(&mut current_house, m);
         houses_visited.insert(current_house);
     }
 
     houses_visited.len()
 }
 
-fn part_2(directions: &[char]) -> usize {
-    let santa_directions: Vec<char> = directions.to_owned().into_iter().step_by(2).collect();
-    let robot_directions: Vec<char> = directions
+fn part_2(directions: &[Direction]) -> usize {
+    let santa_directions: Vec<&Direction> = directions.to_owned().into_iter().step_by(2).collect();
+    let robot_directions: Vec<&Direction> = directions
         .to_owned()
         .into_iter()
         .skip(1)
@@ -59,30 +61,14 @@ fn part_2(directions: &[char]) -> usize {
     houses_visited.insert(current_house);
 
     for m in santa_directions {
-        let direction = match m {
-            '^' => Direction::North,
-            'v' => Direction::South,
-            '>' => Direction::East,
-            '<' => Direction::West,
-            _ => unreachable!(),
-        };
-
-        move_houses(&mut current_house, direction);
+        move_houses(&mut current_house, m);
         houses_visited.insert(current_house);
     }
 
     current_house = (0, 0);
 
     for m in robot_directions {
-        let direction = match m {
-            '^' => Direction::North,
-            'v' => Direction::South,
-            '>' => Direction::East,
-            '<' => Direction::West,
-            _ => unreachable!(),
-        };
-
-        move_houses(&mut current_house, direction);
+        move_houses(&mut current_house, m);
         houses_visited.insert(current_house);
     }
 
@@ -91,18 +77,8 @@ fn part_2(directions: &[char]) -> usize {
 
 pub fn day_03() {
     let input = include_str!("../resources/inputs/day_03.txt").trim();
-    let input: Vec<char> = input.chars().collect();
+    let directions: Vec<Direction> = input.chars().map(|c| move_to_direction(c)).collect();
 
-    println!("Day 3, Part 1: {:?}", part_1(&input));
-    println!("Day 3, Part 2: {:?}", part_2(&input));
-}
-
-mod tests {
-
-    // println!("Day 3, Part 2: {:?}", part_2(&vec!['^', 'v',]));
-    // println!("Day 3, Part 2: {:?}", part_2(&vec!['^', '>', 'v', '<']));
-    // println!(
-    //     "Day 3, Part 2: {:?}",
-    //     part_2(&vec!['^', 'v', '^', 'v', '^', 'v', '^', 'v', '^', 'v'])
-    // );
+    println!("Day 3, Part 1: {:?}", part_1(&directions)); // 2592
+    println!("Day 3, Part 2: {:?}", part_2(&directions)); // 2360
 }
