@@ -24,13 +24,7 @@ fn contains_double_letter(s: &str) -> bool {
 fn no_forbidden_strings(s: &str) -> bool {
     let forbidden_strings = ["ab", "cd", "pq", "xy"];
 
-    for fs in forbidden_strings {
-        if s.contains(fs) {
-            return false;
-        }
-    }
-
-    return true;
+    !forbidden_strings.iter().any(|fs| s.contains(fs))
 }
 
 fn nice_string(s: &str) -> bool {
