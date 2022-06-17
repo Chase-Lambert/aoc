@@ -2,9 +2,9 @@ use md5;
 
 fn find_md5_hash(key: &str, desired_leading_zeroes: usize) -> usize {
     for i in 0.. {
-        let data = format!("{}{}", key, i);
+        let data = format!("{key}{i}");
         let digest = md5::compute(data);
-        let first_n = format!("{:?}", digest)
+        let first_n = format!("{digest:?}")
             .chars()
             .take(desired_leading_zeroes)
             .collect::<Vec<char>>();

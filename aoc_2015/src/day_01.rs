@@ -7,7 +7,6 @@ fn part_2(directions: &[i32]) -> Option<usize> {
 
     for (i, d) in directions.iter().enumerate() {
         position += d;
-
         if position == -1 {
             return Some(i + 1);
         }
