@@ -1,5 +1,5 @@
 #[derive(Debug, Clone, Copy)]
-struct Present {
+pub struct Present {
     length: u32,
     width: u32,
     height: u32,
@@ -50,18 +50,17 @@ impl Present {
     }
 }
 
+#[aoc_generator(day2)]
+pub fn input_generator(input: &str) -> Vec<Present> {
+    input.lines().map(|s| Present::new(s)).collect()
+}
+
+#[aoc(day2, part1)]
 fn part_1(presents: &[Present]) -> u32 {
     presents.iter().map(|p| p.paper_needed()).sum()
 }
 
+#[aoc(day2, part2)]
 fn part_2(presents: &[Present]) -> u32 {
     presents.iter().map(|p| p.ribbon_needed()).sum()
-}
-
-pub fn day_02() {
-    let input = include_str!("../resources/inputs/day_02.txt").trim();
-    let presents: Vec<Present> = input.lines().map(|s| Present::new(s)).collect();
-
-    println!("Day 2, Part 1: {:?}", part_1(&presents)); // 1598415
-    println!("Day 2, Part 2: {:?}", part_2(&presents)); // 3812909
 }

@@ -7,12 +7,12 @@ pub fn input_generator(input: &str) -> Vec<i32> {
 }
 
 #[aoc(day1, part1)]
-fn part_1(directions: &[i32]) -> i32 {
+fn solve_part1(directions: &[i32]) -> i32 {
     directions.iter().sum()
 }
 
 #[aoc(day1, part2)]
-fn part_2(directions: &[i32]) -> Option<usize> {
+fn solve_part2(directions: &[i32]) -> Option<usize> {
     let mut position = 0;
 
     for (i, d) in directions.iter().enumerate() {
